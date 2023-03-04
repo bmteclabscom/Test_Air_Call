@@ -45,7 +45,7 @@ let CallDateStyle = styled.div`
 
   &:before {
     content: '';
-    width: 190%;
+    width: 150%;
     border-bottom: 1px dashed lightgrey;
     position: absolute;
     bottom: 3px;
@@ -54,7 +54,7 @@ let CallDateStyle = styled.div`
 
   &:after {
     content: '';
-    width: 190%;
+    width: 150%;
     border-bottom: 1px dashed lightgrey;
     position: absolute;
     bottom: 3px;
