@@ -8,8 +8,8 @@ import {
 } from './style'
 
 export const ArchiveSwitch = () => {
-  const [seeArchive, setSeeArchive] = useState(false)
-  const [seeDetail, setSeeDetail] = useState(false)
+  const [ seeArchive, setSeeArchive ] = useState(false)
+  const [ seeDetail, setSeeDetail ] = useState(false)
 
   const url = useLocation()
   const navigate = useNavigate()
@@ -30,7 +30,7 @@ export const ArchiveSwitch = () => {
     } else {
       setSeeDetail(true)
     }
-  }, [url])
+  }, [ url ])
 
   return (
     <>

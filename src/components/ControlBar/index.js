@@ -38,7 +38,7 @@ let initControlBtns = [
 ]
 
 const ControlBar = () => {
-  const [controlBtns, setControlBtns] = useState(initControlBtns)
+  const [ controlBtns, setControlBtns ] = useState(initControlBtns)
 
   /* First reset all of the isActive values in controlBtns, then update the button clicked
       to have a true isActive value */
@@ -67,14 +67,14 @@ const ControlBar = () => {
       <PhoneContainer
         onClick={() => handleControlClick(controlBtns, 'phone')}
         greenHighlight={() => handleGreenHighlight(controlBtns)}
-        isActive={controlBtns[0].isActive}
+        isActive={controlBtns[ 0 ].isActive}
       >
         <PhoneStyle />
       </PhoneContainer>
       <ContactsContainer
         onClick={() => handleControlClick(controlBtns, 'contacts')}
         greenHighlight={() => handleGreenHighlight(controlBtns)}
-        isActive={controlBtns[1].isActive}
+        isActive={controlBtns[ 1 ].isActive}
       >
         <ContactsStyle />
       </ContactsContainer>
@@ -86,14 +86,14 @@ const ControlBar = () => {
       <SettingsContainer
         onClick={() => handleControlClick(controlBtns, 'settings')}
         greenHighlight={() => handleGreenHighlight(controlBtns)}
-        isActive={controlBtns[2].isActive}
+        isActive={controlBtns[ 2 ].isActive}
       >
         <SettingsStyle />
       </SettingsContainer>
       <DotContainer
         onClick={() => handleControlClick(controlBtns, 'dot')}
         greenHighlight={() => handleGreenHighlight(controlBtns)}
-        isActive={controlBtns[3].isActive}
+        isActive={controlBtns[ 3 ].isActive}
       >
         <DotStyle />
       </DotContainer>

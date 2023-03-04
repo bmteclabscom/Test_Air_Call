@@ -30,7 +30,7 @@ import 'react-swipeable-list/dist/styles.css'
 import { updateCallList } from '../../store/call.reducer'
 import { useDispatch } from 'react-redux'
 
-const trailingActions = (handleCallArchive, isArchived) => (
+export const trailingActions = (handleCallArchive, isArchived) => (
   <TrailingActions>
     <SwipeAction onClick={() => handleCallArchive()} destructive={true}>
       <ArchiveSwipeStyle isArchived={isArchived}>
@@ -40,7 +40,7 @@ const trailingActions = (handleCallArchive, isArchived) => (
   </TrailingActions>
 )
 
-const CallIcon = ({ callType, direction }) => {
+export const CallIcon = ({ callType, direction }) => {
   if (direction === 'outbound') {
     return <PhoneOutcomingStyle size="18" />
   } else if (callType === 'answered') {
@@ -54,7 +54,7 @@ const CallIcon = ({ callType, direction }) => {
   }
 }
 
-const CallVia = ({ via }) => {
+export const CallVia = ({ via }) => {
   return (
     <>
       tried to call on
@@ -63,7 +63,7 @@ const CallVia = ({ via }) => {
   )
 }
 
-const CallFrom = ({ direction, from, to }) => {
+export const CallFrom = ({ direction, from, to }) => {
   if (direction === 'inbound') {
     return <>{from}</>
   } else if (direction === 'outbound') {
@@ -74,7 +74,7 @@ const CallFrom = ({ direction, from, to }) => {
 }
 
 export const CallBox = ({ id, date, from, to, callType, isArchived, via, direction }) => {
-  const [updateCall] = useUpdateCallMutation()
+  const [ updateCall ] = useUpdateCallMutation()
 
   let newDate = new Date(date)
   let dateOptions = { year: 'numeric', month: 'long', day: 'numeric' }
@@ -93,8 +93,6 @@ export const CallBox = ({ id, date, from, to, callType, isArchived, via, directi
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  /* Fetches the selected call ID's activity json and updates is_archived in activitiesRef to the opposite value
-          of isArchived which was fetched previously */
   const handleCallArchive = async () => {
     const state = {
       is_archived: !isArchived,

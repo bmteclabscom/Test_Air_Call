@@ -14,12 +14,12 @@ import './scss/app.scss'
 import './scss/header.scss'
 
 export default function App() {
-  const [seeArchive, setSeeArchive] = useState(false)
+  const [ seeArchive, setSeeArchive ] = useState(false)
 
-  const { isLoading, isError, error } = useGetAllCallListsQuery()
+  const { isLoading, isError } = useGetAllCallListsQuery()
 
   if (isError) {
-    return <div>Error: {error}</div>
+    return <div>Something went wrong</div>
   } else if (isLoading) {
     return <div>Loading...</div>
   } else {
