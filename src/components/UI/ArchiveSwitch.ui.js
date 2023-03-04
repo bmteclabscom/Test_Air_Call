@@ -25,8 +25,10 @@ export const ArchiveSwitch = () => {
   useMemo(() => {
     if (url.pathname.includes('activity')) {
       setSeeArchive(false)
+      setSeeDetail(false)
     } else if (url.pathname.includes('archive')) {
       setSeeArchive(true)
+      setSeeDetail(false)
     } else {
       setSeeDetail(true)
     }

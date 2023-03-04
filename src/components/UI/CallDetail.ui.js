@@ -5,10 +5,6 @@ import {
   CallDetailBoxStyle,
   CallFromStyle,
   CallViaStyle,
-  PhoneOutcomingStyle,
-  PhoneIncomingStyle,
-  PhoneMissedStyle,
-  VoicemailStyle,
   ArchiveUndoStyle,
   CallFromWrappedStyle,
   CallDetailDateStyle,
@@ -19,6 +15,7 @@ import {
 
 import { useUpdateCallMutation } from '../../store/api'
 import { updateCallList } from '../../store/call.reducer'
+import { CallIcon, CallFrom, CallVia } from './CallBox.ui'
 
 export const CallDetail = ({
   id,
@@ -51,7 +48,6 @@ export const CallDetail = ({
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
-
   const handleArchiveOrUndo = async () => {
     const state = {
       is_archived: !archived,
@@ -98,37 +94,4 @@ export const CallDetail = ({
       </ArchiveUndoStyle>
     </CallDetailBoxStyle>
   )
-}
-
-const CallIcon = ({ callType, direction }) => {
-  if (direction === 'outbound') {
-    return <PhoneOutcomingStyle size="18" />
-  } else if (callType === 'answered') {
-    return <PhoneIncomingStyle size="18" />
-  } else if (callType === 'missed') {
-    return <PhoneMissedStyle size="18" />
-  } else if (callType === 'voicemail') {
-    return <VoicemailStyle size="18" />
-  } else {
-    return null
-  }
-}
-
-const CallVia = ({ via }) => {
-  return (
-    <>
-      tried to call on
-      <span style={{ fontSize: '12.7px', fontWeight: '900' }}> {via}</span>
-    </>
-  )
-}
-
-const CallFrom = ({ direction, from, to }) => {
-  if (direction === 'inbound') {
-    return <>{from}</>
-  } else if (direction === 'outbound') {
-    return <>{to}</>
-  } else {
-    return null
-  }
 }
