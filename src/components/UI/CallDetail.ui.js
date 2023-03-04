@@ -65,9 +65,9 @@ export const CallDetail = ({
     navigate(`/detail/${id}`)
   }
 
-  useMemo(()=>{
+  useMemo(() => {
     setArchived(isArchived)
-  },[ isArchived ])
+  }, [ isArchived ])
   return (
     <CallDetailBoxStyle onClick={handleClick}>
       <CallFromWrappedStyle>

@@ -1,7 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { setCallList } from './call.reducer'
 
-const API_BASE = process.env.API_BASE_URL || 'https://charming-bat-singlet.cyclic.app/https://cerulean-marlin-wig.cyclic.app'
+const API_BASE =
+  process.env.API_BASE_URL ||
+  'https://charming-bat-singlet.cyclic.app/https://cerulean-marlin-wig.cyclic.app'
 
 export const api = createApi({
   reducerPath: 'api',
