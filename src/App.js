@@ -14,7 +14,7 @@ import './scss/app.scss'
 import './scss/header.scss'
 
 export default function App() {
-  const [seeArchive, setSeeArchive] = useState(false)
+  const [ seeArchive, setSeeArchive ] = useState(false)
 
   const { isLoading, isError, error } = useGetAllCallListsQuery()
 

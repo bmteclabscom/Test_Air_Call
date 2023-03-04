@@ -1,13 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import { useNavigate } from 'react-router'
+import { useDispatch } from 'react-redux'
 import {
   CallDetailBoxStyle,
   CallFromStyle,
   CallViaStyle,
-  PhoneOutcomingStyle,
-  PhoneIncomingStyle,
-  PhoneMissedStyle,
-  VoicemailStyle,
   ArchiveUndoStyle,
   CallFromWrappedStyle,
   CallDetailDateStyle,
@@ -17,42 +14,8 @@ import {
 } from './style'
 
 import { useUpdateCallMutation } from '../../store/api'
-import 'react-swipeable-list/dist/styles.css'
 import { updateCallList } from '../../store/call.reducer'
-import { useDispatch } from 'react-redux'
-
-const CallIcon = ({ callType, direction }) => {
-  if (direction === 'outbound') {
-    return <PhoneOutcomingStyle size="18" />
-  } else if (callType === 'answered') {
-    return <PhoneIncomingStyle size="18" />
-  } else if (callType === 'missed') {
-    return <PhoneMissedStyle size="18" />
-  } else if (callType === 'voicemail') {
-    return <VoicemailStyle size="18" />
-  } else {
-    return null
-  }
-}
-
-const CallVia = ({ via }) => {
-  return (
-    <>
-      tried to call on
-      <span style={{ fontSize: '12.7px', fontWeight: '900' }}> {via}</span>
-    </>
-  )
-}
-
-const CallFrom = ({ direction, from, to }) => {
-  if (direction === 'inbound') {
-    return <>{from}</>
-  } else if (direction === 'outbound') {
-    return <>{to}</>
-  } else {
-    return null
-  }
-}
+import { CallIcon, CallVia, CallFrom } from './CallBox.ui'
 
 export const CallDetail = ({
   id,
@@ -66,8 +29,8 @@ export const CallDetail = ({
   duration,
 }) => {
   console.log('isArchived', isArchived)
-  const [archived, setArchived] = useState(isArchived)
-  const [updateCall] = useUpdateCallMutation()
+  const [ archived, setArchived ] = useState(isArchived)
+  const [ updateCall ] = useUpdateCallMutation()
 
   let newDate = new Date(date)
   let dateOptions = { year: 'numeric', month: 'long', day: 'numeric' }
@@ -85,9 +48,7 @@ export const CallDetail = ({
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
-
-  /* Fetches the selected call ID's activity json and updates is_archived in activitiesRef to the opposite value
-          of isArchived which was fetched previously */
+  
   const handleArchiveOrUndo = async () => {
     const state = {
       is_archived: !archived,
@@ -101,6 +62,9 @@ export const CallDetail = ({
     navigate(`/detail/${id}`)
   }
 
+  useMemo(() => {
+    setArchived(isArchived)
+  }, [ isArchived ])
   return (
     <CallDetailBoxStyle onClick={handleClick}>
       <CallFromWrappedStyle>

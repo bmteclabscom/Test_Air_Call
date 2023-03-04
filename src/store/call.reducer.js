@@ -20,10 +20,10 @@ export const updateCallList =
   ({ id, state }) =>
     (dispatch, getState) => {
       const { call } = getState()
-      let callList = [...call.callList]
+      let callList = [ ...call.callList ]
       const index = callList.findIndex((call) => call.id == id)
       const newCall = {
-        ...callList[index],
+        ...callList[ index ],
         is_archived: state.is_archived,
       }
 
